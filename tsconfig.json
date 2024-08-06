@@ -8,7 +8,6 @@
 		"verbatimModuleSyntax": true,
 		"moduleDetection": "force",
 		"resolveJsonModule": true,
-		"noUncheckedIndexedAccess": true,
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true
 	},

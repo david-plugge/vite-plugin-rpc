@@ -23,5 +23,8 @@
 		"vite": "^5.3.5",
 		"vite-plugin-rpc": "link:../.."
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"valibot": "^0.37.0"
+	}
 }

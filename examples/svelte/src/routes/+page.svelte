@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { test } from './test.rpc';
-
-	console.log(test);
+	import { signin } from './test.rpc';
 </script>
 
-<button onclick={() => test()}>Test</button>
+<button onclick={() => signin({ username: 'asd' })}>Sign in</button>

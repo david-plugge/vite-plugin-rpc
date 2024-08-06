@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type GenericContext = Record<string, any>;
+export interface GenericContext {
+	input: unknown;
+	[K: string]: any;
+}
 
 export interface GenericResult {
 	type: string;
