@@ -6,9 +6,12 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"verbatimModuleSyntax": true,
+		"moduleDetection": "force",
+		"resolveJsonModule": true,
+		"noUncheckedIndexedAccess": true,
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true
 	},
-	"exclude": ["node_modules"],
-	"include": ["src"]
+	"include": ["src"],
+	"exclude": ["node_modules"]
 }

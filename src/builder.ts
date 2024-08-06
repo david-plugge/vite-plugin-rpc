@@ -7,9 +7,9 @@ type Prettify<T> = { [K in keyof T]: T[K] } & {};
 type Merge<A, B> = Omit<A, keyof B> & B;
 
 const DECORATE = Symbol('decorate');
-type Decorate<T extends GenericContext> = {
+interface Decorate<T extends GenericContext> {
 	[DECORATE]: T;
-};
+}
 
 function decorate<T extends GenericContext>(decorators: T) {
 	return {
@@ -29,10 +29,7 @@ export function defineMiddleware<
 	return fn;
 }
 
-export class RpcBuilder<
-	Context extends GenericContext = { input: unknown },
-	Result extends GenericResult = never,
-> {
+export class RpcBuilder<Context extends GenericContext = { input: unknown }, Result extends GenericResult = never> {
 	#middleware: any[] = [];
 
 	use<const LocalContext extends GenericContext, const LocalResult extends GenericResult = never>(
@@ -53,11 +50,13 @@ export class RpcBuilder<
 	use(mw: any): any {
 		if (mw instanceof RpcBuilder) {
 			const builder = new RpcBuilder();
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			builder.#middleware = [...this.#middleware, ...mw.#middleware];
 			return builder;
 		}
 		if (typeof mw === 'function') {
 			const builder = new RpcBuilder();
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			builder.#middleware = [...this.#middleware, mw];
 			return builder;
 		}
@@ -67,23 +66,25 @@ export class RpcBuilder<
 
 	create<const LocalResult extends GenericResult>(
 		fn: (context: Context) => MaybePromise<LocalResult>,
-	): (
-		input: [unknown] extends [Context['input']] ? void : Context['input'],
-	) => Promise<Result | LocalResult> {
+	): (input: [unknown] extends [Context['input']] ? void : Context['input']) => Promise<Result | LocalResult> {
 		return async (...args: unknown[]) => {
 			const context: any = {
 				input: args[0],
 			};
 
 			for (const mw of this.#middleware) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 				const result = await mw(context, decorate);
 				if (DECORATE in result) {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 					Object.assign(context, result[DECORATE]);
 				} else {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 					return result;
 				}
 			}
 
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			return fn(context);
 		};
 	}

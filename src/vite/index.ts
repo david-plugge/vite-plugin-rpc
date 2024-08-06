@@ -49,8 +49,7 @@ function client({ handlerPath, baseDir }: ClientOptions): Plugin {
 				`import { handleRequest as __handleRequest__ } from '${handlerPath}'`,
 				'',
 				...getExports(code).map(
-					(name) =>
-						`export const ${name} = (...args) => __handleRequest__('${identifier}', '${name}', args);`,
+					(name) => `export const ${name} = (...args) => __handleRequest__('${identifier}', '${name}', args);`,
 				),
 			];
 

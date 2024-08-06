@@ -1,22 +1,29 @@
 {
 	"name": "vite-plugin-rpc",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Call backend functions by importing them in your client.",
+	"author": "David Plugge",
+	"license": "MIT",
+	"homepage": "https://github.com/david-plugge/vite-plugin-rpc",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/david-plugge/vite-plugin-rpc"
+	},
+	"bugs": "https://github.com/david-plugge/vite-plugin-rpc/issues",
+	"keywords": [
+		"vite",
+		"vite-plugin",
+		"rpc"
+	],
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"modules": "dist/index.js",
 	"scripts": {
-		"dev": "tsc  --project tsconfig.build.json --watch",
-		"build": "tsc --project tsconfig.build.json"
-	},
-	"devDependencies": {
-		"@types/node": "^22.1.0",
-		"eslint": "^9.8.0",
-		"prettier": "3.3.3",
-		"typescript": "^5.5.4",
-		"typescript-eslint": "^8.0.1",
-		"vite": "^5.3.5"
+		"build": "rm -rf dist/* && tsc --project tsconfig.build.json",
+		"format": "prettier --write .",
+		"lint": "eslint .",
+		"test": "vitest run --sequence.concurrent"
 	},
 	"files": [
 		"dist"
@@ -38,6 +45,17 @@
 				"dist/server/index.d.ts"
 			]
 		}
+	},
+	"packageManager": "pnpm@9.6.0",
+	"devDependencies": {
+		"@eslint/js": "^9.8.0",
+		"@types/node": "^22.1.0",
+		"eslint": "^9.8.0",
+		"eslint-config-prettier": "^9.1.0",
+		"prettier": "3.3.3",
+		"typescript": "^5.5.4",
+		"typescript-eslint": "^8.0.1",
+		"vite": "^5.3.5"
 	},
 	"peerDependencies": {
 		"vite": "^5.0.0"
