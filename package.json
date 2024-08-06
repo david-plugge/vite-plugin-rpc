@@ -1,0 +1,51 @@
+{
+	"name": "vite-plugin-rpc",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"modules": "dist/index.js",
+	"scripts": {
+		"dev": "tsc  --project tsconfig.build.json --watch",
+		"build": "tsc --project tsconfig.build.json"
+	},
+	"devDependencies": {
+		"@types/node": "^22.1.0",
+		"eslint": "^9.8.0",
+		"prettier": "3.3.3",
+		"typescript": "^5.5.4",
+		"typescript-eslint": "^8.0.1",
+		"vite": "^5.3.5"
+	},
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": "./dist/index.js",
+		"./vite": "./dist/vite/index.js",
+		"./server": "./dist/server/index.js"
+	},
+	"typesVersions": {
+		"*": {
+			".": [
+				"dist/index.d.ts"
+			],
+			"./vite": [
+				"dist/vite/index.d.ts"
+			],
+			"./server": [
+				"dist/server/index.d.ts"
+			]
+		}
+	},
+	"peerDependencies": {
+		"vite": "^5.0.0"
+	},
+	"dependencies": {
+		"acorn": "^8.12.1",
+		"acorn-typescript": "^1.4.13",
+		"fdir": "^6.2.0",
+		"picomatch": "^4.0.2"
+	}
+}
